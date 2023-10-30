@@ -13,7 +13,8 @@ const todo = {
     <div className="App">
 
      <h1>Hello</h1>
-     <ToDo todo={todo}/>
+     <ToDo {...todo} />
+     
     </div>
   );
 }
