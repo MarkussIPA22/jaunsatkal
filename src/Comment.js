@@ -1,13 +1,37 @@
-import { useEffect , useState } from "react"
-
+import {useState, useEffect} from 'react';
 function Comment(props) {
- 
-    return (
-        <>
+    const [come, setCome] = useState({});
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        async function getData2() {
+      
+          const com = await fetch("https://jsonplaceholder.typicode.com/comments/1");
+   
+          const data2 = await com.json();
+    
+          console.log(data2);
+          
+          setCome(data2);
+          setLoading(false);
+        }
+        getData2(); 
         
-        <p>{props.postid}</p>
-        <p>userID: {props.userId}</p>
-        <p>name: {props.name}</p>
-        <p>email: {props.email}</p>
-
-
+      }, [ ] );
+ 
+return (
+<>
+{loading ? (
+    <p>Loading...</p>
+) : (
+        <>
+            <p>postId: {come.postId}</p>
+            <p>id: {come.id}</p>
+            <p>name: {come.name}</p>
+            <p>email: {come.email}</p>
+            <p>body: {come.body}</p>
+            </>
+ ) }
+</>
+    );
+}
+export default Comment;
